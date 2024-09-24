@@ -162,7 +162,7 @@ export class AuthenticationService {
   signOut(): void {
     const currentUser = this.userPool.getCurrentUser();
     if (currentUser) {
-      localStorage.removeItem(currentUser.getUsername() + '-permissions');
+      localStorage.removeItem('permissions');
       currentUser.signOut();
       this.currentUserSubject.next(null);
     }
@@ -171,6 +171,6 @@ export class AuthenticationService {
   setPermissions(data: any) {
     let user = this.getLastAuthUser();
     //save permissions to local storage with related to user
-    localStorage.setItem(user?.getUsername() + '-permissions', JSON.stringify(data));
+    localStorage.setItem('permissions', JSON.stringify(data));
   }
 }
