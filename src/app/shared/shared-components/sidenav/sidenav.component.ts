@@ -17,6 +17,10 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
     let permissions = this.tokenStorageService.getStorageKeyValue("permissions");
+    this.authService.permissions$.subscribe(permissions => {
+      this.permissions = permissions;
+      this.updateMenuItems();
+    });
     console.log('permissions:', permissions)
     this.logoutItems = [
       {
@@ -162,10 +166,7 @@ export class SidenavComponent implements OnInit {
       },
     ];
 
-    this.authService.permissions$.subscribe(permissions => {
-      this.permissions = permissions;
-      this.updateMenuItems();
-    });
+
   }
 
   getVisibility(route: string) {
