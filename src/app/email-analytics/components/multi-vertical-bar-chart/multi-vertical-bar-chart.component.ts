@@ -7,19 +7,14 @@ import { ChartModule } from 'primeng/chart';
   styleUrl: './multi-vertical-bar-chart.component.scss'
 })
 export class MultiVerticalBarChartComponent implements OnInit{
-
-
-  data: any;
-
-  options: any;
-
-  
-  @Input() title!: string;
-  @Input() labels!: string[];
-  @Input() efficiency_dataset_for_issues!: number[];
-  @Input() efficiency_dataset_for_inquiries!: number[];
-  @Input() datasets!: any[];
-
+    data: any;
+    options: any;
+    
+    @Input() title!: string;
+    @Input() labels!: string[];
+    @Input() efficiency_dataset_for_issues!: number[];
+    @Input() efficiency_dataset_for_inquiries!: number[];
+    @Input() datasets!: any[];
 
     ngOnInit() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -80,9 +75,5 @@ export class MultiVerticalBarChartComponent implements OnInit{
 
             }
         };
-
-
     }
-
-
 }

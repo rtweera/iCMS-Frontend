@@ -2,49 +2,51 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { UtilityService } from '../../services/utility.service';
 
 @Component({
-  selector: 'app-dashboard-time-graph',
-  templateUrl: './dashboard-time-graph.component.html',
-  styleUrl: './dashboard-time-graph.component.scss'
+  selector: 'app-time-graphs',
+  templateUrl: './time-graphs.component.html',
+  styleUrl: './time-graphs.component.scss'
 })
-export class DashboardTimeGraphComponent implements OnInit {
+export class TimeGraphsComponent {
   dialogVisible: boolean = false;
   data: any;
   options: any;
-  displayedAvgFRT: string = '';
 
-  @Input() intervalInDaysStart!: number;
-  @Input() intervalInDaysEnd!: number;
-  @Input() firstResponseTimes!: number[];
-  @Input() overdueCount!: number;
-  @Input() avgFRT!: number;
+  @Input() yAxisTimes!: number[];
   @Input() clientMsgTimes!: string[];
+  title!: string;
+  @Input() type!: "resolution" | "response";
+  @Input() avg!: number;
+  displayedAvg: string = '';
+  avgType!: "Avg FRT" | "Avg RT";
 
   constructor (private utilityService: UtilityService) {}
 
   ngOnInit() {
     this.updateData();
+    this.title = this.type=="response" ? "First Response Time" : "Resolution Time";
+    this.avgType = this.type=="response" ? "Avg FRT" : "Avg RT";
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['emailCount'] || changes['firstResponseTime'] || changes['overdueCount'] || changes['avgFRT']) {
+    if (changes['yAxisTimes'] || changes['clientMsgTimes'] || changes['avg']) {
       this.updateData();
     }
   }
 
-  popup() {
-    this.dialogVisible = true;
-  }
-
   updateData() {
+      if (this.avg < 0) {
+        this.displayedAvg = "N/A";
+      } else {
+      this.displayedAvg = this.utilityService.convertMinutes(this.avg);
+      }
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
       const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
       
-      this.displayedAvgFRT = this.utilityService.convertMinutes(this.avgFRT);
       const combinedData = this.clientMsgTimes.map((x, index) => ({
         x: new Date(x), // Convert to Date object
-        y: this.firstResponseTimes[index]
+        y: this.yAxisTimes[index]
       }));
 
       this.data = {
@@ -52,10 +54,10 @@ export class DashboardTimeGraphComponent implements OnInit {
               {
                   label: '',
                   fill: true,
-                  borderColor: documentStyle.getPropertyValue('--green-500'),
-                  backgroundColor: "rgba(0, 200, 100, 0.2)",
+                  borderColor: this.type=="response" ? documentStyle.getPropertyValue('--green-500') : documentStyle.getPropertyValue('--blue-500'),
+                  backgroundColor: this.type=="response" ? "rgba(0, 200, 100, 0.2)" : "rgba(0, 150, 255, 0.2)",
                   yAxisID: 'y',
-                  tension: 0.4,
+                  tension: 0.2,
                   data: combinedData.sort((a, b) => a.x.getTime() - b.x.getTime()),
               }
           ]
@@ -76,7 +78,7 @@ export class DashboardTimeGraphComponent implements OnInit {
               title: {
                 display: true,
                 color: textColor,
-                text: 'First Response Time',
+                text: this.title,
                 font: {
                     size: 14,
                 },	
@@ -89,6 +91,7 @@ export class DashboardTimeGraphComponent implements OnInit {
                   unit: 'hour',
                   tooltipFormat: 'll HH:mm',
                   displayFormats: {
+                    // hour: 'MMM D',
                     hour: 'MMM D, HH:mm'
                   }
                 },
@@ -146,9 +149,10 @@ export class DashboardTimeGraphComponent implements OnInit {
           tooltip: {
             callbacks: {
               label: (tooltipItem: any) => {
+                // return "hi";
                 const yLabel = parseInt(tooltipItem.yLabel);
                 const formattedValue = this.utilityService.convertMinutes(yLabel);
-                return `FRT: ${formattedValue}`;
+                return `${formattedValue}`;
               }
             }
           },

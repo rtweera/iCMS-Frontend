@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { BestPerformingEmailAccResponse, EmailAccEfficiencyResponse, InquiriesByEfficiencyEffectivenessResponse, IssueInquiryFreqByProdcuts, IssueInquiryFreqByTypeResponse, IssuesByEfficiencyEffectivenessResponse, OngoingAndClosedStatsResponse, OverallyEfficiencyEffectivenessPecentagesResponse, OverdueIssuesResponse } from '../interfaces/dashboard';
+import { 
+  InquiriesByEfficiencyEffectivenessResponse, IssueInquiryFreqByProdcuts, 
+  IssueInquiryFreqByTypeResponse, IssuesByEfficiencyEffectivenessResponse, 
+  OngoingAndClosedStatsResponse, OverdueIssuesResponse 
+} from '../interfaces/dashboard';
 import { INTERVALS, URLS } from './app.constants';
 import { startWith, switchMap } from 'rxjs/operators';
 

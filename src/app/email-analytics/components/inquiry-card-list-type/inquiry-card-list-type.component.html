@@ -62,7 +62,7 @@
         *ngIf="inquiryData.status === 'closed'"
       >
         <i class="pi pi-shield text-sm font-thin pr-2"></i>
-        <span class="hidden md:inline">Effectivity:&nbsp;</span>
+        <span class="hidden md:hidden">Effectivity:&nbsp;</span>
         <span>{{ inquiryData.effectivity }}</span>
       </p-tag>
       <p-tag
@@ -72,7 +72,7 @@
         *ngIf="inquiryData.status === 'closed'"
       >
         <i class="pi pi-clock text-sm font-thin pr-2"></i>
-        <span class="hidden md:inline">Efficiency:&nbsp;</span>
+        <span class="hidden md:hidden">Efficiency:&nbsp;</span>
         <span>{{ inquiryData.efficiency }}</span>
       </p-tag>
     </div>

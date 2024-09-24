@@ -105,8 +105,6 @@ export class PopUpIssuesAndInquiryInsightsDashboardComponent {
       this.minDate.setFullYear(prevYear);
       this.maxDate = today;
 
-      //this.subscribeALL();
-
       
   }
 
@@ -182,8 +180,6 @@ unsubscribeAll(){
 getDataForStatCards(){
   this.isLoadingStatcards = true
   this.statCardsSubscription = this.dataService.getDataForStatCards(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: OngoingAndClosedStatsResponse) => {
-  console.log(data)
-
 
   this.statsData[0].title = data.count_total_ongoing_issues
   this.statsData[1].title = data.count_total_closed_issues
@@ -273,7 +269,7 @@ getDataForIssuenadInquiryByProducts(){
   this.isLoadingProductdistriOfIssuesnInquirires = true
 
   this.DataForProductsByIssueandInquirySubscription = this.dataService.getDataForProductsByIssueandInquiry(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: IssueInquiryFreqByProdcuts) => {
-    console.log("data for Isseus and Inquiries by PRODUCTSSSSSS",data)
+    console.log("data for Isseus and Inquiries by PRODUCTS",data)
     
     // ]
 
@@ -311,7 +307,7 @@ getOverdueIssuesdata(){
   this.isLoadingoverallOverdueIssuesCount = true
 
   this.OverdueIssuesdataSubscription = this.dataService.getOverdueIssuesdata(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: OverdueIssuesResponse) => {
-    console.log("overdue issues related DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", data)
+    console.log("overdue issues related DATA", data)
  
     this.overallOverdueIssuesHeader = `${data.sum_overdue_issues} OVERDUE ISSUES recorded`
     this.overallOverdueIssuesContent = `out of ${data.total_ongoing_issues} ongoing issues `

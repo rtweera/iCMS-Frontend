@@ -12,14 +12,12 @@ export class HorizontalBarChartComponent {
   @Input() sbtChartColors: any[] = [];
   @Input() sbtChartValues: any[] = [];
 
-
   data: any;
   options: any;
 
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
-    
 
     this.data = {
       labels: this.sbtChartLabels || ['TravelBox', 'VEGA', 'Lia', 'Negorate', 'ReviewSpotter'],

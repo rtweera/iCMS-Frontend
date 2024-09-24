@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { EmailAccEfficiencyResponse, InquiriesByEfficiencyEffectivenessResponse, IssuesByEfficiencyEffectivenessResponse, OngoingAndClosedStatsResponse, OverallyEfficiencyEffectivenessPecentagesResponse, OverdueIssuesResponse } from '../interfaces/dashboard';
+import { 
+  EmailAccEfficiencyResponse, InquiriesByEfficiencyEffectivenessResponse, 
+  IssuesByEfficiencyEffectivenessResponse, OngoingAndClosedStatsResponse, 
+  OverallyEfficiencyEffectivenessPecentagesResponse, OverdueIssuesResponse } from '../interfaces/dashboard';
 import { INTERVALS, URLS } from '../services/app.constants';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -9,7 +12,6 @@ import { startWith, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private http: HttpClient) { }
   
   private baseUrl: string = `${URLS.baseUrlv2}/dashboard`;
@@ -32,7 +34,6 @@ export class DataService {
         switchMap(() => this.http.get<OverallyEfficiencyEffectivenessPecentagesResponse>(url))
       );
   }
-
 
   getDataForEffiandEffecIssues(intervalIndays: number, intervalInDaysEnd: number): Observable<IssuesByEfficiencyEffectivenessResponse> {
     const url = `${this.baseUrl}/get_data_for_issue_frequency_by_efficiency_and_effectiveness?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
@@ -63,16 +64,12 @@ export class DataService {
   }
 
 
-getOverdueIssuesdata(intervalIndays: number, intervalInDaysEnd: number): Observable<OverdueIssuesResponse> {
-  const url = `${this.baseUrl}/get_data_for_overdue_issues?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
+  getOverdueIssuesdata(intervalIndays: number, intervalInDaysEnd: number): Observable<OverdueIssuesResponse> {
+    const url = `${this.baseUrl}/get_data_for_overdue_issues?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
 
-  return interval(this.pollingInterval).pipe(
-    startWith(0),
-    switchMap(() => this.http.get<OverdueIssuesResponse>(url))
-  );
-}
-
-
-
-
+    return interval(this.pollingInterval).pipe(
+      startWith(0),
+      switchMap(() => this.http.get<OverdueIssuesResponse>(url))
+    );
+  }
 }

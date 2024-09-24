@@ -15,18 +15,3 @@ export interface EmailMetadataResponse {
     skip: number;
     limit: number;
 }
-
-
-// BUG: REMOVE in Production (everything with name Mock___)
-export interface MockEmailMetadata {
-    id: string;
-    title: string;
-    rating: number;
-}
-export interface MockEmailMetadataResponse {
-    products: MockEmailMetadata[];
-    total: number;
-    skip: number;
-    limit: number;
-}
-// ---

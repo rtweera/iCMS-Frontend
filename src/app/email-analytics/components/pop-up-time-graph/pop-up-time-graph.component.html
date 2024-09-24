@@ -1,0 +1,45 @@
+<div class="my-container flex flex-col h-auto">
+    <div class="my-child-1 flex-none">
+      <app-page-header
+        pageTitle="Email Analytics Dashboard"
+        class="w-full h-fit"
+        [breadcrumbItems]="breadcrumbItems"
+        [showDatePicker]="true"
+        (rangeDatesChanged)="onRangeDatesChanged($event)"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [emailDashboardDate]="true"
+        [intervalInDaysStart]="intervalInDaysStart"
+        [intervalInDaysEnd]="intervalInDaysEnd"
+      />
+    </div>
+</div>
+<div class="flex flex-col gap-y-16">
+    <div class="flex flex-row gap-6 place-content-center">
+        <div class="w-1/2">
+            <app-time-graphs
+                [yAxisTimes]="responseTimesY"
+                [clientMsgTimes]="responseTimesX"
+                [avg]="responseAvg"
+                type="response"
+            />
+        </div>
+        <div class="w-1/2">
+            <app-time-graphs
+                [yAxisTimes]="resolutionTimesY"
+                [clientMsgTimes]="resolutionTimesX"
+                [avg]="resolutionAvg"
+                type="resolution"
+            />
+        </div>
+    </div>
+    
+    <div class="flex flex-row gap-6 place-content-center">
+        <app-best-worst-card
+            [header]="overallOverdueIssuesHeader"
+            [card_content]="overallOverdueIssuesContent"
+            [bgcolor]="overdueBgColor"
+            *ngIf="!false"
+        />
+    </div>
+</div>

@@ -104,8 +104,6 @@ export class PopUpProductInsightsDashboardComponent {
       this.minDate.setFullYear(prevYear);
       this.maxDate = today;
 
-      //this.subscribeALL();
-
       
   }
 
@@ -123,6 +121,8 @@ export class PopUpProductInsightsDashboardComponent {
         this.unsubscribeAll();
       }
     }
+
+
   }
   
   ngOnDestroy(): void {
@@ -181,9 +181,9 @@ getDataForIssuenadInquiryByProducts(){
   this.isLoadingProductdistriOfIssuesnInquirires = true
 
   this.DataForProductsByIssueandInquirySubscription = this.dataService.getDataForProductsByIssueandInquiry(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: IssueInquiryFreqByProdcuts) => {
-    console.log("data for Isseus and Inquiries by PRODUCTSSSSSS",data)
+    console.log("data for Isseus and Inquiries by PRODUCTS",data)
     
-    // ]
+  
 
       this.prodcuts_distri_of_issues_and_inquiries_labels = data.product_labels
       this.prodcuts_distri_of_issues_and_inquiries_datasets = [
@@ -251,11 +251,10 @@ getDataForWordCloud(){
      const color = item.color;
      
      // Do something with topic and frequency, such as logging them to the console
-     console.log(`word: ${topic}, weight: ${frequency}`);
+    //  console.log(`word: ${topic}, weight: ${frequency}`);
      this.wordCloudData.push({"word":topic, "weight": frequency, "color": color})
      this.isLoadingWCC = false
    }
-   console.log("WORD CLOUD DATA JUST BEOFRE DISPLAYING PRODUCT INSIGHTS",  this.wordCloudData)
   
     
 

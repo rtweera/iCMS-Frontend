@@ -141,7 +141,6 @@ export class SettingsComponent implements OnInit{
 
   onSubmitSentimentShifts(): void {
 
-    // console.log(this.sentimentShiftsForm.value);
     const email_Accs_To_CheckSS = this.sentimentShiftsForm.value.emailAccsToCheckSS;
     console.log(email_Accs_To_CheckSS);
 
@@ -176,7 +175,6 @@ export class SettingsComponent implements OnInit{
   
 
   onSubmitCriticality(): void {
-    //console.log(this.criticalityForm.value);
     const email_Accs_To_Criticality = this.criticalityForm.value.emailAccsToCheckCriticality;
 
     let formData: PostingCriticalityData = {
@@ -184,7 +182,6 @@ export class SettingsComponent implements OnInit{
     }
     
     console.log("PostingCriticalityData", formData)
-    console.log("accs_to_check_criticality", formData.accs_to_check_criticality)
 
     this.authService.getIdToken().subscribe((token: any) => {
       this.dataService.postCriticalityData(token, formData).subscribe(response => {
@@ -204,14 +201,12 @@ export class SettingsComponent implements OnInit{
 
 
   onSubmitOverdueIssues(): void {
-    //console.log(this.overdueIssuesForm.value);
     const email_Accs_To_Overdue_Issues = this.overdueIssuesForm.value.emailAccsToCheckOverdueIssues;
     console.log("email_Accs_To_Overdue_Issues",email_Accs_To_Overdue_Issues)
     let formData: PostingOverdueIssuesData = {
       accs_to_check_overdue_emails: email_Accs_To_Overdue_Issues ? email_Accs_To_Overdue_Issues.map((item: any) => item.address) : [],
     }
 
-    console.log(formData.accs_to_check_overdue_emails)
     this.authService.getIdToken().subscribe((token: any) => {
       this.dataService.postIssuesOverdueData(token, formData).subscribe(response => {
         console.log('Trigger Data sent successfully:', response);
@@ -234,7 +229,7 @@ export class SettingsComponent implements OnInit{
   //notification channels submit
 
   onSubmitNotificationChannels(): void {
-    console.log(this.notificationChannelsForm.value);
+    //console.log(this.notificationChannelsForm.value);
 
 
     const formData: PostingNotiSendingChannelsRecord = {
@@ -242,7 +237,7 @@ export class SettingsComponent implements OnInit{
       is_dashboard_notifications: this.notificationChannelsForm.value.dashboardChannelChecked || false,
       noti_sending_emails:this.notificationChannelsForm.value.notiSendingEmails || []
     }
-    console.log(formData.noti_sending_emails.length, formData.is_email_notifications, this.currentNotiSendingEmailAccounts.length)
+    //console.log(formData.noti_sending_emails.length, formData.is_email_notifications, this.currentNotiSendingEmailAccounts.length)
 
     if (formData.noti_sending_emails.length===0 && formData.is_email_notifications===true && this.currentNotiSendingEmailAccounts.length===0){
       this.messageService.add({ severity: 'warn', summary: 'Error', detail: 'Please Enter some email addresses to send notifications to' });
@@ -273,12 +268,11 @@ export class SettingsComponent implements OnInit{
     }
     
   onSubmitSystemConfigurations(): void {
-      console.log(this.systemConfigurations.value);
+      //console.log(this.systemConfigurations.value);
   
   
       const formData: SendSystemConfigData = {
         overdue_margin_time:this.systemConfigurations.value.overdueInterval || 14
-        // newProducts:this.systemConfigurations.value.newProductInputs
 
       }
   
@@ -298,7 +292,7 @@ export class SettingsComponent implements OnInit{
   
         const issue_types_to_check = this.issueninqyiryTypesConfigurations.value.issueTypesToCheck;
         const inquiry_types_to_check = this.issueninqyiryTypesConfigurations.value.inquiryTypesToCheck;
-        console.log("issue types to check",issue_types_to_check, "inquiry_types_to_check", inquiry_types_to_check)
+        //console.log("issue types to check",issue_types_to_check, "inquiry_types_to_check", inquiry_types_to_check)
         let formData: IssueInqTypeData = {
           issue_types_to_check: issue_types_to_check ? issue_types_to_check.map((item: any) => item.name) : [],
           inquiry_types_to_check: inquiry_types_to_check?inquiry_types_to_check.map((item: any) => item.name) : []
@@ -331,7 +325,6 @@ export class SettingsComponent implements OnInit{
 
 
     if (newEmailName && newEmailNName) { 
-          //console.log(newEmailName);
           
           const sendingData: PostEditingEmail = {
             oldEmailAddress:this.selectedReadingEmail,
@@ -340,7 +333,7 @@ export class SettingsComponent implements OnInit{
             clientSecret: newEmailClientSecret || ""
           }
 
-          console.log(sendingData)
+          //console.log(sendingData)
 
           // Send the new email data to FastAPI
           this.dataService.postEmailEdit(sendingData).subscribe((response: EmailINtegrationPostResponseMessage) => {
@@ -371,7 +364,7 @@ export class SettingsComponent implements OnInit{
 
 
   onSubmitEmailIntegration(): void {
-    console.log(this.emailInetgration.value);
+    //console.log(this.emailInetgration.value);
     const newEmailName = this.emailInetgration.get('newEmailAccount')?.value;
     const newEmailNName = this.emailInetgration.get('newEmailNickname')?.value;
     const newEmailClientSecret = this.emailInetgration.get('newClientSecret')?.value;
@@ -410,27 +403,8 @@ export class SettingsComponent implements OnInit{
   }
   }
 
-  // topic configuration submit
-
-  // onSubmitTopicConfiguration(): void {
-  //   //console.log(this.topicConfiguration.value);
-  //   const newTopicsVal = this.topicConfiguration.get('newTopics')?.value as unknown as any[];
-  //   if (newTopicsVal) { // Check if newTopicsVal is not null or undefined
-  //     for (const item of newTopicsVal) {
-  //         console.log(item);
-  //         // push the new topic into the currentCheckingTopics
-  //         this.currentCheckingTopics.push({ name: item });
-  //         this.topicConfiguration.reset();
-          
-          
-  //     }
-  // } else {
-  //     console.log("No new topics entered.");
-  // }
-    
-  // }
-
- ;
+ 
+ 
   //-------------------------------------------------- show dialog functions---------------------------------------------------------------------------
 
   selectedNotiSendingEmail : any;
@@ -459,35 +433,23 @@ export class SettingsComponent implements OnInit{
 
   }
 
-  // ConfirmProductDelete():void{
-  //   this.deleteProduct(this.selectedProduct)
-  //   this.visibleProductDeleting = false;
 
-  // }
   showEmailAccEditPopUp(emailAddress: any): void {
     this.selectedReadingEmail = emailAddress;
     
     this.dataService.getEmailEditData(this.selectedReadingEmail).subscribe((data: GetEditingEmailResponse) => {
   
-      console.log('Data received:', data);
+      //console.log('Data received:', data);
       this.emailEdit.patchValue({
         newClientSecret: data.clientSecret,
         newEmailAccount: data.emailAddress,
         newEmailNickname: data.nickName
       
       });
-      // this.markFormControlsAsTouchedAndDirty();
-      // this.cd.detectChanges();
-      
-      console.log('Form values after patch:', this.emailEdit.value);
-      console.log('New Client Secret:', this.emailEdit.get('newClientSecret')?.value);
   
-
       
     });
-    
-    // this.markFormControlsAsTouchedAndDirty();
-    // this.cd.detectChanges();
+
     this.editEmailAccVisible = true;
 
   }
@@ -510,7 +472,7 @@ formGroup: FormGroup | undefined;
 
 deleteReadingEmail(email: string): void {
   
-  console.log( this.selectedReadingEmail)
+  //console.log( this.selectedReadingEmail)
 
   const sendingData: DeleteReadingEmail = {removing_email:email}
 
@@ -551,29 +513,6 @@ deleteNotiSendingEmail(emailName: string): void {
 
 }
 
-// deleteProduct(productname: string): void {
-//   this.currentConsideringProducts = this.currentConsideringProducts.filter(item => item.name !== productname);
-  
-//   this.http.post(`http://127.0.0.1:8000/email/settings/remove_product`, {
-
-//     current_considering_products: this.currentConsideringProducts.map(item => item.name as string)
-//   }).subscribe(response => {
-//     console.log('Data sent successfully:', response);
-//     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product deleted successfully' });
-//     // Assuming you want to reset the form after successful submission
-  
-//   }, error => {
-//     console.error('Error sending data:', error);
-//     this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Error occured' });
-
-//   });
-
-// }
-
-// deleteCheckingTopic(topicName: string): void {
-//   this.currentCheckingTopics = this.currentCheckingTopics.filter(item => item.name !== topicName);
-
-// }
 
 
 //-------------------------------------------------- ngOnInit---------------------------------------------------------------------------
@@ -681,7 +620,7 @@ ngOnInit() {
  getUserRoleDataForUser(): void {
   this.authService.getIdToken().subscribe((token: string) => {
     this.dataService.getUserRoleData(token).subscribe((data: UserRoleResponse) => {
-      console.log('user role data', data);
+      //console.log('user role data', data);
       this.isShowingAdminFeatures = data.isAdmin;
     },
     error => {
@@ -696,10 +635,10 @@ getReadingEmailAccountsForSettingsPages(): void {
   
   this.dataService.getData().subscribe(
     (data: EmailAccWithNickName[]) => {
-      console.log(data);
+      //console.log("reading email acc data", data);
       this.currentReadingEmailAccountsForIntegrationPage = data; // Array of dictionaries received from the backend
       this.currentReadingEmailAccountsForNotificationPage = data.map(obj => ({ address: obj.address }));
-      console.log('currentReadingEmailAccountsForNotificationPage', this.currentReadingEmailAccountsForNotificationPage);
+     // console.log('currentReadingEmailAccountsForNotificationPage', this.currentReadingEmailAccountsForNotificationPage);
     },
     error => {
       console.error('Error fetching reading email data:', error);
@@ -715,7 +654,7 @@ getSentimentShiftDataOfUser(): void {
 
   this.authService.getIdToken().subscribe((token: string) => {
     this.dataService.getSSCheckingData(token).subscribe((data: SSShiftData) => {
-      console.log('sscheckingemails',data)
+      //console.log('sscheckingemails',data)
       this.currentSSCheckingEmailAccountsOfUser = data.accs_to_check_ss
       this.sentimentShiftsForm.patchValue({
         emailAccsToCheckSS: this.currentSSCheckingEmailAccountsOfUser,
@@ -742,7 +681,7 @@ getSentimentShiftDataOfUser(): void {
 getCiticalityCheckingDataOfUser(): void {
   this.authService.getIdToken().subscribe((token: string) => {
     this.dataService.getCriticalityCheckingEmails(token).subscribe((data: EmailAcc[]) => {
-      console.log('Criticality checking emails',data)
+      //console.log('Criticality checking emails',data)
       this.currentCritiCheckingEmailAccountsofUser = data
       this.criticalityForm.patchValue({
         emailAccsToCheckCriticality: this.currentCritiCheckingEmailAccountsofUser
@@ -759,9 +698,8 @@ getCiticalityCheckingDataOfUser(): void {
 getNewIntergratingEmailID(): void{
 
   this.dataService.getNewIntegratingEmailID().subscribe((data: GetNewIntergratingEmailID) => {
-    console.log('OverdueIssues checking emails',data)
+    //console.log('OverdueIssues checking emails',data)
     this.newlyIntegratingEmailID = data.emailID
-    // let msgDetail = `Use the following redirect url when setting up the gmail API for the following newly intergrating email account \n \n http://127.0.0.1:8000/email/info_and_retrieval/callback?id=${this.newlyIntegratingEmailID}`
     let msgDetail = `Use the following redirect url when setting up the gmail API for the following newly intergrating email account \n \n ${this.dataService.baseUrl}=${this.newlyIntegratingEmailID}`
     this.newIntergratingEmailIDMessages = [{ severity: 'info', detail:  msgDetail}]
 
@@ -777,7 +715,7 @@ getNewIntergratingEmailID(): void{
 getOverdueIssuesCheckingDataOfUser(): void{
   this.authService.getIdToken().subscribe((token: string) => {
     this.dataService.getOverdueIssuesCheckingEmails(token).subscribe((data: EmailAcc[]) => {
-      console.log('OverdueIssues checking emails',data)
+      //console.log('OverdueIssues checking emails',data)
       this.currentOVerdueCheckingAccountsofUser = data
       this.overdueIssuesForm.patchValue({
         emailAccsToCheckOverdueIssues: this.currentOVerdueCheckingAccountsofUser
@@ -796,7 +734,7 @@ getOverdueIssuesCheckingDataOfUser(): void{
 getNotiChannelsDataForUser(): void {
   this.authService.getIdToken().subscribe((token: string) => {
     this.dataService.getNotiChannelsData(token).subscribe((data: NotiSendingChannelsRecord) => {
-      console.log('NotiChannels DATTTTTAAAAAA',data)
+      //console.log('NotiChannels DATA',data)
       this.currentNotiSendingEmailAccounts = data.noti_sending_emails
       this.notificationChannelsForm.patchValue({
           emailChannelChecked: data.is_email_notifications,
@@ -814,7 +752,7 @@ getNotiChannelsDataForUser(): void {
 
 getSystemConfigDataForCompany(): void {
   this.dataService.getSystemConfigurationData().subscribe((data: SendSystemConfigData) => {
-    console.log('System Configurations data ',data)
+    //console.log('System Configurations data ',data)
 
     this.systemConfigurations.patchValue({
         overdueInterval: data.overdue_margin_time,
@@ -829,7 +767,7 @@ getSystemConfigDataForCompany(): void {
 
 getIssInqTypeData(): void {
   this.dataService.getIssueInqTypeData().subscribe((data: IssueInqTypeData) => {
-    console.log('Issue inquiry Type Configurations data ',data)
+    //console.log('Issue inquiry Type Configurations data ',data)
     const issue_types_to_check: IssInqType[] = data.issue_types_to_check.map((item) => {
       return { name: item };
     });
@@ -849,14 +787,6 @@ getIssInqTypeData(): void {
 );
 }
 
-
-
-  // Define the custom validator function here
-  // emailValidator(email: string): ValidatorFn {
-  //   return (control: AbstractControl): { [key: string]: any } | null => {
-  //     return Validators.email(control.value) ? null : { 'email': true };
-  //   };
-  // }
 
   emailValidator(email: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -886,17 +816,6 @@ getIssInqTypeData(): void {
   }
 
 
-  
-  
- 
-  private markFormControlsAsTouchedAndDirty(): void {
-    Object.keys(this.emailEdit.controls).forEach(controlName => {
-      const control = this.emailEdit.get(controlName);
-      control?.markAsTouched();
-      control?.markAsDirty();
-    });
-    this.cd.detectChanges();
-  }
 
 
 }

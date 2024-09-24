@@ -6,12 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './best-worst-card.component.scss'
 })
 export class BestWorstCardComponent {
-
   @Input() header!: string;
   @Input() card_content!: any;
   @Input() bgcolor!: string;
-
-  
-  
-
 }

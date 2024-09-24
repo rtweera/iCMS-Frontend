@@ -15,19 +15,14 @@ export class DynamicHorizontalBarchartComponent implements OnInit{
   @Input() sbtChartValues: any[] = [];
   @Input() datasets!: any[];
 
-
- 
-
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
-    
 
     this.data = {
       labels: this.sbtChartLabels || ['TravelBox', 'VEGA', 'Lia', 'Negorate', 'ReviewSpotter'],
       datasets: this.datasets || [
         {
-      
           backgroundColor:this.sbtChartColors || [
             'rgba(34, 197, 94, 0.9)',
             'rgba(243, 114, 44, 0.9)',

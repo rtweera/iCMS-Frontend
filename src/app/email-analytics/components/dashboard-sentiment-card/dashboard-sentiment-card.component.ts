@@ -17,10 +17,8 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
   loading = false;
   dialogVisible = false;
   options!: EChartsOption;
-
-
-
   colors: CommonColors = {};
+
   @Input() fromDate!: Date;
   @Input() toDate!: Date;
 
@@ -28,7 +26,6 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
     private utility: UtilityService,
   ) { }
 
-  
   ngOnInit() {
     this.updateData() 
   }
@@ -37,7 +34,6 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
     if (changes['value'] ) {
       this.updateData()
     }
-
   }
 
   updateData(){
@@ -45,7 +41,6 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
     this.setOptions();
   }
   
-
   getColor(value: number) {
     if (value < -0.3) {
       return '#FF4500';
@@ -76,9 +71,7 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
           max: +1,
           splitNumber: 2,
           itemStyle: {
-            // color: '#58D9F9',
             color: this.getColor(this.value),
-            // shadowColor: 'rgba(0,138,255,0.45)',
             shadowColor: 'rgba(50,50,50,0.2)',
             shadowBlur: 10,
             shadowOffsetX: 2,
@@ -87,21 +80,17 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
           progress: {
             show: true,
             roundCap: true,
-            // width: 18,
             width: 10,
           },
           pointer: {
             icon: 'path://M2090.36389,615.30999 L2090.36389,615.30999 C2091.48372,615.30999 2092.40383,616.194028 2092.44859,617.312956 L2096.90698,728.755929 C2097.05155,732.369577 2094.2393,735.416212 2090.62566,735.56078 C2090.53845,735.564269 2090.45117,735.566014 2090.36389,735.566014 L2090.36389,735.566014 C2086.74736,735.566014 2083.81557,732.63423 2083.81557,729.017692 C2083.81557,728.930412 2083.81732,728.84314 2083.82081,728.755929 L2088.2792,617.312956 C2088.32396,616.194028 2089.24407,615.30999 2090.36389,615.30999 Z',
-            // length: '75%',
             length: '80%',
-            // width: 16,
             width: 10,
             offsetCenter: [0, '5%']
           },
           axisLine: {
             roundCap: true,
             lineStyle: {
-              // width: 18,
               width: 10,
             }, 
     
@@ -132,8 +121,6 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
             show: false
           },
           detail: {
-  
-            // borderWidth: 2,
             width: '60%',
             lineHeight: 40,
             height: 40,
@@ -145,13 +132,11 @@ export class DashboardSentimentCardComponent implements OnInit, OnChanges {
             },
             rich: {
               value: {
-                // fontSize: 50,
                 fontSize: 20,
                 fontWeight: 'bolder',
                 color: '#777'
               },
               mytext: {
-                // fontSize: 30,
                 fontSize: 15,
                 color: '#999',
               }

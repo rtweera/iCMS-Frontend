@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IssueDataResponse, IssuePopupData } from '../interfaces/issues';
 import { Observable, throwError } from 'rxjs';
-import { catchError, timeout } from 'rxjs/operators'; // BUG: remove in production
+import { catchError, timeout } from 'rxjs/operators';
 import { Filter } from '../interfaces/filters';
 import { UtilityService } from './utility.service';
 import { ERRORS, SETTINGS, URLS } from './app.constants';

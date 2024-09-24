@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { WordCloudItem } from "../../types";
+
+import { TrendingWord } from '../../../email-analytics/interfaces/dashboard';
+import { WordCloudItem } from '../../types';
 
 declare var $: any;
 
@@ -11,13 +13,15 @@ declare var $: any;
 export class WordcloudComponent implements OnInit {
   @Input() title!: string;
   @Input() isLoading!: boolean;
-  @Input("words") wordList!: WordCloudItem[];
+  //@Input("words") wordList!: WordCloudItem[];
+  @Input() words!: WordCloudItem[];
 
   ngOnInit() {
-    this.refreshChart(this.wordList);
+
   }
 
   refreshChart(wordList: WordCloudItem[]) {
+    console.log("started refresh", wordList)
     $("#wordCloud").jQWCloud({
       words: wordList,
       maxFont: 50,
@@ -33,11 +37,20 @@ export class WordcloudComponent implements OnInit {
       beforeCloudRender:function(){},
       afterCloudRender:function(){}
     });
+
+    console.log("finished refresh", wordList)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['wordList'] ) {
-      this.refreshChart(this.wordList);
+    if (changes['words'] ) {
+      console.log("change in words in wordcloud detected")
+      this.sleep(2000).then(() => { // Sleep for 2000 milliseconds (2 seconds)
+        this.refreshChart(this.words);
+    });
     }
+  }
+
+  sleep(milliseconds: number) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
 }

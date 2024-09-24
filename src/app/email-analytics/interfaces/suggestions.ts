@@ -21,30 +21,7 @@ export interface PopupEmail {
 export interface SuggestionPopupData {
     emails: PopupEmail[];
 }
-// BUG: REMOVE in Production (everything with name Mock___)
-export interface MockSuggestionMetadata {
-    id: string;
-    title: string;
-    rating: number;
-    tags: string[];
-    meta: {
-        createdAt: Date;
-    };
-}
-export interface MockSuggestionMetadataResponse {
-    products: MockSuggestionMetadata[];
-    total: number;
-    skip: number;
-    limit: number;
-}
 
-
-export interface MockSuggestionAdditionalDataResponse {
-    title: string;
-    body: string;
-}
-
-// ---Ranindu added interface
 export interface SuggestionsData{
     receiver: string;
     date: string;

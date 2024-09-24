@@ -17,19 +17,16 @@ export class DashboardProductInsightsComponent {
   }
 
   data: any;
-
   options: any;
 
   ngOnInit() {
     this.updateData();
-     
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['product_performance_scores'] ) {
       this.updateData()
     }
-
   }
 
   updateData(){

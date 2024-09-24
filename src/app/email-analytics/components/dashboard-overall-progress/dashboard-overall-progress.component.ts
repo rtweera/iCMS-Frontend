@@ -12,10 +12,10 @@ export class DashboardOverallProgressComponent {
 
   
   @Input() intervalInDaysStart!: number;
-  @Input() intervalInDaysEnd!: number;
-  @Input() efficiencyData!: number[];
-  @Input() effectivenessData!: number[];
-  @Input() progressData!: number[];
+  @Input() intervalInDaysEnd!: number;
+  @Input() efficiencyData!: number[];
+  @Input() effectivenessData!: number[];
+  @Input() progressData!: number[];
 
   optionsDefault: any;
   optionsProgress: any;
@@ -88,7 +88,7 @@ export class DashboardOverallProgressComponent {
     };
 
     this.dataProgress = {
-      labels: ['Closed', 'Ongoing'],
+      labels: ['Ongoing', 'Closed'],
         datasets: [
             {
                 data: this.progressData || [140, 325],

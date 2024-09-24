@@ -9,7 +9,6 @@ import { startWith, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private http: HttpClient) { }
   
   private baseUrl: string = `${URLS.baseUrlv2}/dashboard`;

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestComponent } from './test.component';
+import { PopUpTimeGraphComponent } from './pop-up-time-graph.component';
 
-describe('TestComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+describe('PopUpTimeGraphComponent', () => {
+  let component: PopUpTimeGraphComponent;
+  let fixture: ComponentFixture<PopUpTimeGraphComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestComponent]
+      declarations: [PopUpTimeGraphComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(PopUpTimeGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,15 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './dynamic-stacked-bar-chart.component.scss'
 })
 export class DynamicStackedBarChartComponent implements OnInit{
-
   data: any;
   options: any;
 
   @Input() title!: string;
   @Input() labels!: string[];
   @Input() datasets!: any[];
-
-
 
     ngOnInit() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -65,5 +62,4 @@ export class DynamicStackedBarChartComponent implements OnInit{
             }
         };
     }
-
 }

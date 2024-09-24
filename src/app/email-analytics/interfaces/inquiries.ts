@@ -48,28 +48,3 @@ export interface InquiryDataResponse {
     limit: number;
 }
 
-// END
-
-
-// BUG: REMOVE in Production (everything with name Mock___)
-export interface MockInquiryMetadata {
-    id: string;
-    title: string;
-    rating: number;
-    tags: string[];
-    meta: {
-        createdAt: Date;
-    };
-}
-export interface MockInquiryMetadataResponse {
-    products: MockInquiryMetadata[];
-    total: number;
-    skip: number;
-    limit: number;
-}
-
-export interface MockInquiryAdditionalDataResponse {
-    title: string;
-    body: string;
-}
-// ---

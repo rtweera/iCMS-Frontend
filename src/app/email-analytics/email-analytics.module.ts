@@ -49,7 +49,7 @@ import { ToastModule } from 'primeng/toast';
 
 
 import { MessageService } from 'primeng/api';
-import { WordCloudComponent } from './components/word-cloud/word-cloud.component';
+// import { WordCloudComponent } from './components/word-cloud/word-cloud.component';
 import { CalendarModule } from 'primeng/calendar';
 import { StackedBarChartComponent } from './components/stacked-bar-chart/stacked-bar-chart.component';
 import { MultiHorizontalBarChartComponent } from './components/multi-horizontal-bar-chart/multi-horizontal-bar-chart.component';
@@ -66,7 +66,7 @@ import { DynamicStackedBarChartComponent } from './components/dynamic-stacked-ba
 import { BestWorstCardComponent } from './components/best-worst-card/best-worst-card.component';
 import { DynamicHorizontalBarchartComponent } from './components/dynamic-horizontal-barchart/dynamic-horizontal-barchart.component';
 import { SkeletonModule } from 'primeng/skeleton';
-import { SuggestionCardComponent } from './components/suggestion-card/suggestion-card.component';
+// import { SuggestionCardComponent } from './components/suggestion-card/suggestion-card.component';
 import { SuggestionFilteringComponent } from './components/suggestion-filtering/suggestion-filtering.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { IssueCardListTypeComponent } from './components/issue-card-list-type/issue-card-list-type.component';
@@ -74,15 +74,15 @@ import { IssueDataviewComponent } from './components/issue-dataview/issue-datavi
 import { SuggestionCardListTypeComponent } from './components/suggestion-card-list-type/suggestion-card-list-type.component';
 import { InquiryCardListTypeComponent } from './components/inquiry-card-list-type/inquiry-card-list-type.component';
 import { InquiryDataviewComponent } from './components/inquiry-dataview/inquiry-dataview.component';
-import { DashboardSmallCardComponent } from './components/dashboard-small-card/dashboard-small-card.component';
+// import { DashboardSmallCardComponent } from './components/dashboard-small-card/dashboard-small-card.component';
 import { AuthorizationMessageComponent } from './components/authorization-message/authorization-message.component';
-import { DashboardIssueCardComponent } from './components/dashboard-issue-card/dashboard-issue-card.component';
-import { DashboardInquiryCardComponent } from './components/dashboard-inquiry-card/dashboard-inquiry-card.component';
-import { DashboardSuggestionCardComponent } from './components/dashboard-suggestion-card/dashboard-suggestion-card.component';
+// import { DashboardIssueCardComponent } from './components/dashboard-issue-card/dashboard-issue-card.component';
+// import { DashboardInquiryCardComponent } from './components/dashboard-inquiry-card/dashboard-inquiry-card.component';
+// import { DashboardSuggestionCardComponent } from './components/dashboard-suggestion-card/dashboard-suggestion-card.component';
 import { DashboardSentimentCardComponent } from './components/dashboard-sentiment-card/dashboard-sentiment-card.component';
-import { DashboardSummaryCardComponent } from './components/dashboard-summary-card/dashboard-summary-card.component';
-import { DashboardActionablesComponent } from './components/dashboard-actionables/dashboard-actionables.component';
-import { DashboardResponsetimeComponent } from './components/dashboard-responsetime/dashboard-responsetime.component';
+// import { DashboardSummaryCardComponent } from './components/dashboard-summary-card/dashboard-summary-card.component';
+// import { DashboardActionablesComponent } from './components/dashboard-actionables/dashboard-actionables.component';
+// import { DashboardResponsetimeComponent } from './components/dashboard-responsetime/dashboard-responsetime.component';
 import { FilteringComponent } from './components/filtering/filtering.component';
 
 import { MessagesModule } from 'primeng/messages';
@@ -101,6 +101,8 @@ import { PopUpProductInsightsDashboardComponent } from './components/pop-up-prod
 import { PopUpIssuesAndInquiryInsightsDashboardComponent } from './components/pop-up-issues-and-inquiry-insights-dashboard/pop-up-issues-and-inquiry-insights-dashboard.component';
 import { PopUpEmailAccountInsightsDashboardComponent } from './components/pop-up-email-account-insights-dashboard/pop-up-email-account-insights-dashboard.component';
 import 'chartjs-adapter-moment';
+import { TimeGraphsComponent } from './components/time-graphs/time-graphs.component';
+import { PopUpTimeGraphComponent } from './components/pop-up-time-graph/pop-up-time-graph.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +118,7 @@ import 'chartjs-adapter-moment';
     EmailAccCardComponent,
     NotiSendingEmailAccCardComponent,
     TopicCardComponent,
-    WordCloudComponent,
+    // WordCloudComponent,
     StackedBarChartComponent,
     MultiHorizontalBarChartComponent,
 
@@ -129,22 +131,22 @@ import 'chartjs-adapter-moment';
     DynamicStackedBarChartComponent,
     BestWorstCardComponent,
     DynamicHorizontalBarchartComponent,
-    SuggestionCardComponent,
+    // SuggestionCardComponent,
     SuggestionFilteringComponent,
     IssueCardListTypeComponent,
     IssueDataviewComponent,
     SuggestionCardListTypeComponent,
     InquiryCardListTypeComponent,
     InquiryDataviewComponent,
-    DashboardSmallCardComponent,
+    // DashboardSmallCardComponent,
     AuthorizationMessageComponent,
-    DashboardIssueCardComponent,
-    DashboardInquiryCardComponent,
-    DashboardSuggestionCardComponent,
+    // DashboardIssueCardComponent,
+    // DashboardInquiryCardComponent,
+    // DashboardSuggestionCardComponent,
     DashboardSentimentCardComponent,
-    DashboardSummaryCardComponent,
-    DashboardActionablesComponent,
-    DashboardResponsetimeComponent,
+    // DashboardSummaryCardComponent,
+    // DashboardActionablesComponent,
+    // DashboardResponsetimeComponent,
     FilteringComponent,
     ThreadDataviewComponent,
     ThreadCardListTypeComponent,
@@ -158,6 +160,8 @@ import 'chartjs-adapter-moment';
     PopUpProductInsightsDashboardComponent,
     PopUpIssuesAndInquiryInsightsDashboardComponent,
     PopUpEmailAccountInsightsDashboardComponent,
+    TimeGraphsComponent,
+    PopUpTimeGraphComponent,
   ],
   imports: [
     CommonModule,

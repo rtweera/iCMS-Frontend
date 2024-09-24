@@ -18,10 +18,6 @@ export class ProgressDonoughtChartComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: any) {
-    // if (changes.chartData && changes.chartData.currentValue) {
-    //   this.data.datasets[0].data = changes.chartData.currentValue;
-    // }
-
     if (changes['chartData'] && changes['chartData'].currentValue) {
       if (this.data && this.data.datasets) {
         this.data.datasets[0].data = changes['chartData'].currentValue;

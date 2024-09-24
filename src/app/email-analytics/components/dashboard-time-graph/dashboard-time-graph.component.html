@@ -3,7 +3,7 @@
   (click)="popup()"
 >
   <div class="md:w-3/4 flex flex-col justify-center">
-    <p-chart type="line" [data]="data" [options]="options" height="200px" />
+    <p-chart type="line" [data]="data" [options]="options" height="240px" />
   </div>
   <div class="md:w-1/4 flex flex-col place-content-evenly gap-y-4 md:gap-y-0">
     <div>
@@ -27,5 +27,10 @@
   [draggable]="false"
   [breakpoints]="{ '1199px': '80vw', '575px': '90vw' }"
 >
-  Yet to implement
+  <app-pop-up-time-graph 
+    [intervalInDaysStart]="intervalInDaysStart"
+    [intervalInDaysEnd]="intervalInDaysEnd"
+    [isOpened]="dialogVisible"
+    >
+  </app-pop-up-time-graph>
 </p-dialog>

@@ -18,7 +18,4 @@ export class EmailAccCardComponent {
   onDelete(): void {
     this.deleteReadingAccount.emit();
   }
-
-
-
 }

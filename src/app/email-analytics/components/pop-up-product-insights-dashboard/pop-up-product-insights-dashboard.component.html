@@ -16,7 +16,6 @@
 </div>
 
 <div class="flex flex-row justify-center flex-wrap gap-6">
-  <!-- TODO: skeletons not loading. check! -->
   <app-best-worst-card
     header="Best Peforming Product"
     [card_content]="bestProduct"
@@ -44,13 +43,14 @@
 
 <div class="flex flex-row w-full gap-6 mt-6">
   <div class="min-w-[565px] w-1/2">
-    <!-- TODO: wordcloud different colours each time -->
-     <!-- TODO: wordcloud has a fixed width , otherwise overflow issue -->
-    <app-wordcloud
+     @if (wordCloudData !== undefined && wordCloudData.length > 0) {
+      <app-wordcloud
       [words]="wordCloudData"
       title="Trending Products"
       *ngIf="!isLoadingWCC"
     />
+     }
+ 
     <p-skeleton styleClass="w-full my-3" height="250px" *ngIf="isLoadingWCC" />
   </div>
 

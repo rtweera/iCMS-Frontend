@@ -9,13 +9,10 @@ import { startWith, switchMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private http: HttpClient) { }
   
   private baseUrl: string = `${URLS.baseUrlv2}/dashboard`;
   private pollingInterval: number = INTERVALS.pollingInterval;
-
-
   
   getDataForEfficiencyByEmailAcc(intervalIndays: number, intervalInDaysEnd: number): Observable<EmailAccEfficiencyResponse> {
     const url = `${this.baseUrl}/get_data_for_efficiency_by_email_acc?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;

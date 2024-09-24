@@ -12,10 +12,6 @@
 <div class="flex flex-col w-full">
   <div class="flex flex-wrap gap-6 w-full">
     <div class="flex flex-row flex-wrap place-content-evenly w-full">
-      <app-gauge-chart
-        [dataValue]="dataValue_forGaugeStart"
-        *ngIf="!isLoadingGC"
-      />
       <p-skeleton styleClass="w-1/3 my-3" height="250px" *ngIf="isLoadingGC" />
       <app-doughnut-chart
         title="Overall Sentiments Proportion"
@@ -23,13 +19,6 @@
         *ngIf="!isLoadingDC"
       />
       <p-skeleton styleClass="w-1/3 my-3" height="250px" *ngIf="isLoadingDC" />
-      <!-- <app-doughnut-chart title="Current Overall Sentiments" /> -->
-
-      <app-wordcloud
-        [words]="wordCloudData"
-        title="Trending Products"
-        *ngIf="!isLoadingWCC"
-      />
       <p-skeleton styleClass="w-1/3 my-3" height="250px" *ngIf="isLoadingWCC" />
     </div>
     <div class="flex flex-row flex-wrap place-content-evenly w-full">
@@ -47,11 +36,6 @@
         *ngIf="isLoadingSBTime"
       />
     </div>
-
-    <!-- <app-stat-card title="540" subTitle="Total Calls" imgPath="./call/blue-phone.png"/>
-      <app-stat-card title="10 min" subTitle="Avg. Call Time" imgPath="./call/green-call.png"/>
-      <app-stat-card title="5402" subTitle="Total Minute" imgPath="./call/blue-call.png"/> -->
-    <!-- </div> -->
   </div>
 
   <div class="flex flex-wrap gap-6 place-content-evenly w-full">
@@ -82,19 +66,8 @@
     />
     <p-skeleton styleClass="w-1/2 my-3" height="250px" *ngIf="isLoadingSBT" />
   </div>
-
-  <!-- <div class="stat-cards"> -->
-  <!-- <app-stat-card title="540" subTitle="Total Calls" imgPath="./call/blue-phone.png"/>
-      <app-stat-card title="10 min" subTitle="Avg. Call Time" imgPath="./call/green-call.png"/>
-      <app-stat-card title="5402" subTitle="Total Minute" imgPath="./call/blue-call.png"/> -->
-  <!-- </div> -->
-  <!-- <app-line-area-chart title="Sentiment Over Time"/> -->
   <div class="flex gap-6 flex-wrap">
-    <!-- <app-gauge-chart/> -->
     <div class="stat-cards">
-      <!-- <app-stat-card title="240" subTitle="Positive Calls" imgPath="./call/green-call.png"/>
-      <app-stat-card title="100" subTitle="Negative Calls" imgPath="./call/red-phone.png"/>
-      <app-stat-card title="200" subTitle="Neutral Calls" imgPath="./call/yellow-phone.png"/> -->
     </div>
   </div>
 </div>

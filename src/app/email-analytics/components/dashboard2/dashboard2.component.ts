@@ -1,8 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { MenuItem } from "primeng/api";
-import { BestPerformingEmailAccResponse, EmailAccEfficiencyResponse, GaugeChartResponse, 
-  InquiriesByEfficiencyEffectivenessResponse, IssueInquiryFreqByProdcuts, 
-  IssueInquiryFreqByTypeResponse, IssuesByEfficiencyEffectivenessResponse, 
+import { GaugeChartResponse, 
+  IssueInquiryFreqByProdcuts, 
   OngoingAndClosedStatsResponse, OverallyEfficiencyEffectivenessPecentagesResponse, 
   OverdueIssuesResponse, stat_card_single_response, TimeCardResponse } from '../../interfaces/dashboard';
 import { DataService } from '../../services/dashboardMain.service';
@@ -34,7 +33,6 @@ export class Dashboard2Component implements OnInit {
 
   // calenders
 
-  // rangeDates: Date[] | undefined;
   rangeDates: Date[] = [new Date(), new Date()];
   
   fromDate: Date | undefined;
@@ -149,12 +147,9 @@ export class Dashboard2Component implements OnInit {
   closedInquiriesCount!:number 
   
   dataValue_forGaugeStart:number = 0
-
   products_labels!: string[]
   products_performance_scores!: number[]
-
   isProductPerformanceChart: boolean = true;
-
   
   private statCardsSubscription: Subscription | undefined;
   private DataForStatCardsSubscription: Subscription | undefined;
@@ -162,14 +157,10 @@ export class Dashboard2Component implements OnInit {
   private DataForGaugeChartSubscription: Subscription | undefined;
   private DataForProductsByIssueandInquirySubscription: Subscription | undefined;
   private DataForTimeGraphSubscription: Subscription | undefined;
-  // private DataForEffiandEffecInquiriesSubscription: Subscription | undefined;
-  // private DataForIssueandInquiryTypesSubscription: Subscription | undefined;
-  // private DataForEfficiencyByEmailAccSubscription: Subscription | undefined;
-  // private BestPerformingEmailSubscription: Subscription | undefined;
-  // private OverdueIssuesdataSubscription: Subscription | undefined;
-
+  private OverdueIssuesdataSubscription: Subscription | undefined;
 
   _isPerfInsightsOpened: boolean = false;
+  isLoadingTimeGraphOverdue: boolean = true;
 
   set isPerfInsightsOpened(value: boolean) {
     this._isPerfInsightsOpened = value;
@@ -230,7 +221,6 @@ export class Dashboard2Component implements OnInit {
     this.intervalInDaysStart = Math.floor(differenceStartMs / (1000 * 60 * 60 * 24))
     this.intervalInDaysEnd = Math.floor(differenceEndMs / (1000 * 60 * 60 * 24))
 
-    // console.log('Difference in days start:', this.intervalInDaysStart, 'Difference in days end:', this.intervalInDaysEnd);
     this.unsubscribeAll();
     this.subscribeALL();
   }
@@ -251,11 +241,6 @@ export class Dashboard2Component implements OnInit {
     this.DataForGaugeChartSubscription?.unsubscribe();
     this.DataForProductsByIssueandInquirySubscription?.unsubscribe();
     this.DataForTimeGraphSubscription?.unsubscribe();
-
-    // this.DataForProductsByIssueandInquirySubscription?.unsubscribe();
-    // this.DataForEfficiencyByEmailAccSubscription?.unsubscribe();
-    // this.BestPerformingEmailSubscription?.unsubscribe();
-    // this.OverdueIssuesdataSubscription?.unsubscribe();
   }
 
   getDataForEmailAccCards(){
@@ -263,7 +248,6 @@ export class Dashboard2Component implements OnInit {
     this.DataForStatCardsSubscription = this.dataService
       .getDataForEmailCards(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data:stat_card_single_response[]) => {
-        // console.log("DATA FOR EMAIL ACC CARDS",data)
         this.EmailAccData = data;
         this.isLoadingEmailCards = false;
       });
@@ -273,7 +257,6 @@ export class Dashboard2Component implements OnInit {
     this.statCardsSubscription =  this.dataService
       .getDataForStatCards(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data: OngoingAndClosedStatsResponse) => {
-    // console.log("ISSUE AND INQUIRY COUNT DATA", data)
         this.openedIssuesCount = data.count_total_ongoing_issues
         this.closedIssuesCount = data.count_total_closed_issues
         this.openedInquiriesCount = data.count_total_ongoing_inquiries
@@ -291,7 +274,6 @@ export class Dashboard2Component implements OnInit {
     this.CurrentOverallEfficiencyandEffectivenessSubscription = this.dataService
       .getCurrentOverallEfficiencyandEffectiveness(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data: OverallyEfficiencyEffectivenessPecentagesResponse) => {
-        // console.log("data for overall efficiency and effectiveness", data)
         this.dntChartDataOverallEfficiency = data.efficiency_percentages
         this.dntChartOverallEfficiencyLabels= data.efficiency_categories.reverse()
         this.dntChartDataOverallEffeftiveness= data.effectiveness_percentages
@@ -302,134 +284,25 @@ export class Dashboard2Component implements OnInit {
     });
   }
 
-// getDataForEfficiencyDstriandEffectivenessDistri(){
-   
-//   let effi_issue_data: number[] = [] 
-//   let effec_issue_date: number[] = []
-//   this.DataForEffiandEffecIssuesSubscription = this.dataService.getDataForEffiandEffecIssues(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: IssuesByEfficiencyEffectivenessResponse) => {
-//     console.log("data for efficency and effectiveness of ISSUES DISTRIBUTION", data)
-
-//     effi_issue_data = data.efficiency_frequencies
-//     effec_issue_date = data.effectiveness_frequencies
-
-       
-//    });
-
-//    this.DataForEffiandEffecInquiriesSubscription = this.dataService.getDataForEffiandEffecInquiries(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: InquiriesByEfficiencyEffectivenessResponse) => {
-//     console.log("data for efficiency and effectiveness of INQUIRIES DISTRIBUTION", data)
-    
-//     this.effi_dstri_vert_bar_labels = data.efficiency_categories
-//     this.effect_dstri_vert_bar_labels = data.effectiveness_categories
-//     this.effi_distri_vert_var_inquiries_data = data.efficiency_frequencies
-//     this.effect_distri_vert_var_inquiries_data = data.effectiveness_frequencies
-//     this.effect_distri_vert_var_issues_data = effec_issue_date
-//     this.effi_distri_vert_var_issues_data = effi_issue_data
-
-//      this.isLoadingEffiDistri = false
-//      this.isLoadingEffectDistri = false
-      
-//    });
-
-  
-// }
 
   getDataForIssuenadInquiryByProducts(){
     this.DataForProductsByIssueandInquirySubscription = this.dataService
       .getDataForProductsByIssueandInquiry(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data: IssueInquiryFreqByProdcuts) => {
-      // console.log("data for Isseus and Inquiries by PRODUCTSSSSSS",data)
         this.products_labels = data.product_labels
         this.products_performance_scores = data.performence_scores
         this.isProductPerformanceChart = false
     });
   }
 
-// getDataForEfficiencyByEmaiAcss(){
 
-  
-//   this.DataForEfficiencyByEmailAccSubscription = this.dataService.getDataForEfficiencyByEmailAcc(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: EmailAccEfficiencyResponse) => {
-//     console.log("EFFICiency by emaila acc data", data)
-    
-//     this.email_acc_effi_labels = data.all_reading_email_accs
-//     this.email_acc_effi_dataset = [
-//       {
-//         type: 'bar',
-//         label: 'Inefficient Percentage',
-//         backgroundColor:  this.documentStyle.getPropertyValue('--inefficient-color'),
-//         data: data.ineff_percentages
-//     },
-//     {
-//         type: 'bar',
-//         label: 'Less Efficient Percentage',
-//         backgroundColor: this.documentStyle.getPropertyValue('--less-efficient-color'),
-//         data: data.less_eff_percentages
-//     },
-//     {
-//       type: 'bar',
-//       label: 'Moderately Efficient Percentage',
-//       backgroundColor:   this.documentStyle.getPropertyValue('--moderately-efficient-color'),
-//       data: data.mod_eff_percentages
-//   },
-//   {
-//       type: 'bar',
-//       label: 'High Efficient Percentage',
-//       backgroundColor: this.documentStyle.getPropertyValue('--highly-efficient-color'),
-//       // backgroundColor: "rgba(17, 193, 14, 0.9)",
-//       data: data.highly_eff_percentages
-//   }
-
-//     ]
-
-//     this.isLoadingEffiByEmailAcc = false
-//   });
-
-
-// }
-
-// getBestPerformingEmail(){
-
-
-//   this.BestPerformingEmailSubscription = this.dataService.getBestPerformingEmail(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: BestPerformingEmailAccResponse) => {
-//     console.log("best performing email account", data)
- 
-//     this.bestEmail = data.best_performing_email_acc
-//     this.isLoadingBestPerfEmail = false
-  
-       
-//    });
-// }
-
-
-// getOverdueIssuesdata(){
-  
-
-//   this.OverdueIssuesdataSubscription = this.dataService.getOverdueIssuesdata(this.intervalInDaysStart, this.intervalInDaysEnd).subscribe((data: OverdueIssuesResponse) => {
-//     console.log("overdue issues related DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", data)
- 
-//     this.overallOverdueIssuesHeader = `${data.sum_overdue_issues} OVERDUE ISSUES recorded`
-//     this.overallOverdueIssuesContent = `out of ${data.total_ongoing_issues} ongoing issues `
-//     this.isLoadingoverallOverdueIssuesCount = false
-    
-//     this.overdueIssByEmailsLabels = data.all_reading_email_accs
-//     this.overdueIssByEmailsData = data.overdue_issues_count_per_each_email
-//     this.overdueIssByEmailsColors = []
-//     for (let i of this.overdueIssByEmailsLabels){
-//       this.overdueIssByEmailsColors.push(this.documentStyle.getPropertyValue('--issue-color'))
-//     }
-//     this.isLoadingOverdueIssByEmailAcc = false
-  
-       
-//    });
-// }
 
   getDataForGaugeChart() {
     this.isLoadingGC = true; // Set loading indicator to true before making the request
     this.DataForGaugeChartSubscription = this.dataService
       .getDataForGaugeChart(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data: GaugeChartResponse) => {
-        console.log("gauge chart data", data.value)
         this.dataValue_forGaugeStart = data.value
-        console.log("datavaluefor gauge chart", this.dataValue_forGaugeStart)
         this.isLoadingGC = false;
       });
   }
@@ -440,10 +313,17 @@ export class Dashboard2Component implements OnInit {
       .getDataForTimeGraph(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data: TimeCardResponse) => {
         this.avgFirstResponseTime = data.avgFirstResponseTime;
-        this.overdueCount = data.overdueCount;
         this.firstResponseTimes = data.firstResponseTimes;
         this.clientMsgTimes = data.clientMsgTimes;
         this.isLoadingTimeCard = false;
       });
+    this.isLoadingTimeGraphOverdue = true;
+    this.OverdueIssuesdataSubscription = this.dataService
+      .getOverdueIssuesdata(this.intervalInDaysStart, this.intervalInDaysEnd)
+      .subscribe((data: OverdueIssuesResponse) => {
+        this.overdueCount = data.sum_overdue_issues
+        this.isLoadingTimeGraphOverdue = false;
+      });
   }
+  
 }

@@ -7,8 +7,6 @@ export interface EmailAccWithNickName {
   nickname: string;
 }
 
-
-
 export interface SSShiftData {
     accs_to_check_ss: EmailAcc[];
     ss_lower_bound: number | null;
@@ -30,7 +28,6 @@ export interface PostingNotiSendingChannelsRecord{
   is_email_notifications: boolean;
   noti_sending_emails:string[];
 }
-
 
 export interface PostNewIntegratingEmail{
   emailID: number;

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuggestionCardComponent } from './suggestion-card.component';
+import { TimeGraphsComponent } from './time-graphs.component';
 
-describe('SuggestionCardComponent', () => {
-  let component: SuggestionCardComponent;
-  let fixture: ComponentFixture<SuggestionCardComponent>;
+describe('TimeGraphsComponent', () => {
+  let component: TimeGraphsComponent;
+  let fixture: ComponentFixture<TimeGraphsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SuggestionCardComponent]
+      declarations: [TimeGraphsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SuggestionCardComponent);
+    fixture = TestBed.createComponent(TimeGraphsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

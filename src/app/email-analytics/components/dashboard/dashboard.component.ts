@@ -123,8 +123,6 @@ export class DashboardComponent  implements OnInit{
     this.minDate.setMonth(prevMonth);
     this.minDate.setFullYear(prevYear);
     this.maxDate = today;
-    // console.log('Difference in days start:', this.intervalInDaysStart, 'Difference in days end:', this.intervalInDaysEnd);
-    //this.subscribeALL();
   }
   
   ngOnChanges(changes: SimpleChanges): void {
@@ -149,7 +147,6 @@ export class DashboardComponent  implements OnInit{
   onRangeDatesChanged(rangeDates: Date[]) {
     this.rangeDates = rangeDates;
     
-    // console.log('Selected Range Dates:', this.rangeDates);
     const endDate = rangeDates[1];
     const startDate = rangeDates[0];
     const today = new Date();
@@ -166,8 +163,6 @@ export class DashboardComponent  implements OnInit{
     // Calculate the difference in days
     this.intervalInDaysStart = Math.floor(differenceStartMs / (1000 * 60 * 60 * 24))
     this.intervalInDaysEnd = Math.floor(differenceEndMs / (1000 * 60 * 60 * 24))
-
-    // console.log('Difference in days start:', this.intervalInDaysStart, 'Difference in days end:', this.intervalInDaysEnd);
     
     this.unsubscribeAll();
     this.subscribeALL();
@@ -199,19 +194,18 @@ export class DashboardComponent  implements OnInit{
    this.CurrentOverallSentimentsSubscription =  this.dataService
     .getCurrentOverallSentiments(this.intervalInDaysStart, this.intervalInDaysEnd)
     .subscribe((data:get_current_overall_sentiments_response) => {
-    // console.log(Object.keys(data).length)
       if (Object.keys(data).length !== 0){
-        // const dictData = data as unknown as { positive_percentage: number, neutral_percentage: number, negative_percentage: number };
         const positivePercentage = data.positive_percentage;
         const neutralPercentage = data.neutral_percentage;
         const negativePercentage = data.negative_percentage;
 
         this.chartData = [negativePercentage, positivePercentage, neutralPercentage];
         this.isLoadingDC = false;
-        console.log("CURRENT OVERALL SENTIMENTS", this.chartData)
+        //console.log("CURRENT OVERALL SENTIMENTS", this.chartData)
       }
       else {
-        // write the code to handle when data is an empty dict
+        this.chartData = [0, 0, 0];
+        this.isLoadingDC = false;
       }  
     });
   }
@@ -222,7 +216,7 @@ export class DashboardComponent  implements OnInit{
     this.DataForStatCardsSubscription = this.dataService
       .getDataForStatCards(this.intervalInDaysStart, this.intervalInDaysEnd)
       .subscribe((data:stat_card_single_response[]) => {
-        // console.log(data)
+        // console.log("stat card", data)
         this.statsData = data
         this.isLoadingStatCards = false
       });
@@ -253,7 +247,6 @@ export class DashboardComponent  implements OnInit{
         this.positive_values_forSentimentsByTime = data.positive_values
         this.neutral_values_forSentimentsByTime = data.neutral_values
         this.negative_values_forSentimentsbyTime = data.negative_values
-        // console.log("sentiment by TIME LABELS", this.labelsForSentimentsByTime)
         this.isLoadingSBTime = false;
       });
   }
@@ -265,19 +258,14 @@ export class DashboardComponent  implements OnInit{
       this.DataForWordCloudSubscription = this.dataService
         .getDataForWordCloud(this.intervalInDaysStart, this.intervalInDaysEnd)
         .subscribe((data:word_cloud_single_response[]) => {
-          // console.log("WORD CLOUD DATA", data, "intervalindaysStart", this.intervalInDaysStart, "intervalInDaysEnd", this.intervalInDaysEnd)
-          // const newkeywords: TrendingWord[] = []
-          //this.wordCloudData = [{"word":"topic", "weight": 50, "color": 'rgba(212, 13, 214, 0.9)'}]
+   
           for (const item of data) {
             // Access the "topic" and "frequency" properties of each item
             const topic = item.topic;
             const frequency = item.frequency;
             const color = item.color;        
-            // console.log(`word: ${topic}, weight: ${frequency}`);
             this.wordCloudData.push({"word":topic, "weight": frequency, "color": color})
           }
-          //this.wordCloudData = newkeywords
-          console.log("WORD CLOUD DATA JUST BEOFRE DISPLAYING",  this.wordCloudData)
           this.isLoadingWCC = false
       });
   }
@@ -309,7 +297,6 @@ export class DashboardComponent  implements OnInit{
       .subscribe((data: GaugeChartResponse) => {
         // console.log("gauge chart data", data.value)
         this.dataValue_forGaugeStart = data.value
-        // console.log("datavaluefor gauge chart", this.dataValue_forGaugeStart)
         this.isLoadingGC = false;
       });
   }

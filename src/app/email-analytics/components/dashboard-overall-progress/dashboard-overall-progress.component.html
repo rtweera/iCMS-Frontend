@@ -1,4 +1,6 @@
 <div class="w-full" (click)="popup()">
+  <div class="hidden text-sm font-semibold text-slate-600 text-center py-2">Performance Insights</div>
+
   <div class="card flex flex-wrap place-content-evenly gap-y-10">
     <!-- Progress -->
     <p-chart
@@ -25,7 +27,7 @@
 </div>
 
 <p-dialog
-  header="Overall Insights"
+  header="Performance Insights"
   [(visible)]="dialogVisible"
   [style]="{ width: '70vw' }"
   [modal]="true"

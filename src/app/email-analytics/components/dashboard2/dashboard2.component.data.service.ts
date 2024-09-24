@@ -8,7 +8,6 @@ import { URLS } from '../../services/app.constants';
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private http: HttpClient) { }
   
   private baseUrl: string = `${URLS.baseUrl}/dashboard`;
@@ -22,7 +21,6 @@ export class DataService {
     const url = `${this.baseUrl}/get_data_for_overall_efficiency_and_effectiveness_percentages?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
     return this.http.get<OverallyEfficiencyEffectivenessPecentagesResponse>(url);
   }
-
 
   getDataForEffiandEffecIssues(intervalIndays: number, intervalInDaysEnd: number): Observable<IssuesByEfficiencyEffectivenessResponse> {
     const url = `${this.baseUrl}/get_data_for_issue_frequency_by_efficiency_and_effectiveness?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
@@ -49,18 +47,13 @@ export class DataService {
     return this.http.get<EmailAccEfficiencyResponse>(url);
   }
 
+  getBestPerformingEmail(intervalIndays: number, intervalInDaysEnd: number): Observable<BestPerformingEmailAccResponse> {
+    const url = `${this.baseUrl}/get_data_for_best_performing_email_acc?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
+    return this.http.get<BestPerformingEmailAccResponse>(url);
+  }
 
-getBestPerformingEmail(intervalIndays: number, intervalInDaysEnd: number): Observable<BestPerformingEmailAccResponse> {
-  const url = `${this.baseUrl}/get_data_for_best_performing_email_acc?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
-  return this.http.get<BestPerformingEmailAccResponse>(url);
-}
-
-getOverdueIssuesdata(intervalIndays: number, intervalInDaysEnd: number): Observable<OverdueIssuesResponse> {
-  const url = `${this.baseUrl}/get_data_for_overdue_issues?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
-  return this.http.get<OverdueIssuesResponse>(url);
-}
-
-
-
-
+  getOverdueIssuesdata(intervalIndays: number, intervalInDaysEnd: number): Observable<OverdueIssuesResponse> {
+    const url = `${this.baseUrl}/get_data_for_overdue_issues?intervalInDaysStart=${intervalIndays}&intervalInDaysEnd=${intervalInDaysEnd}`;
+    return this.http.get<OverdueIssuesResponse>(url);
+  }
 }

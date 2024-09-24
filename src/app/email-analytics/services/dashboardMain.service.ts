@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval } from 'rxjs';
-import { BestPerformingEmailAccResponse, EmailAccEfficiencyResponse, GaugeChartResponse, InquiriesByEfficiencyEffectivenessResponse, IssueInquiryFreqByProdcuts, IssueInquiryFreqByTypeResponse, IssuesByEfficiencyEffectivenessResponse, OngoingAndClosedStatsResponse, OverallyEfficiencyEffectivenessPecentagesResponse, OverdueIssuesResponse, stat_card_single_response, TimeCardResponse } from '../interfaces/dashboard';
+import { BestPerformingEmailAccResponse, EmailAccEfficiencyResponse, GaugeChartResponse, InquiriesByEfficiencyEffectivenessResponse, IssueInquiryFreqByProdcuts, IssueInquiryFreqByTypeResponse, IssuesByEfficiencyEffectivenessResponse, OngoingAndClosedStatsResponse, OverallyEfficiencyEffectivenessPecentagesResponse, OverdueIssuesResponse, stat_card_single_response, TimeCardResponse, TimeGraph } from '../interfaces/dashboard';
 import { INTERVALS, URLS } from './app.constants';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -119,6 +119,20 @@ getDataForTimeGraph(intervalInDaysStart: number, intervalInDaysEnd: number): Obs
   return interval(this.pollingInterval).pipe(
     startWith(0),
     switchMap(() => this.http.get<TimeCardResponse>(`${URLS.baseUrlv2}/dashboard/time-graph?intervalInDaysStart=${intervalInDaysStart}&intervalInDaysEnd=${intervalInDaysEnd}`))
+  );
+}
+
+getResolutionTime(intervalInDaysStart: number, intervalInDaysEnd: number): Observable<TimeGraph> {
+  return interval(this.pollingInterval).pipe(
+    startWith(0),
+    switchMap(() => this.http.get<TimeGraph>(`${URLS.baseUrlv2}/dashboard/resolution-time?intervalInDaysStart=${intervalInDaysStart}&intervalInDaysEnd=${intervalInDaysEnd}`))
+  );
+}
+
+getFirstResponseTime(intervalInDaysStart: number, intervalInDaysEnd: number): Observable<TimeGraph> {
+  return interval(this.pollingInterval).pipe(
+    startWith(0),
+    switchMap(() => this.http.get<TimeGraph>(`${URLS.baseUrlv2}/dashboard/first-response-time?intervalInDaysStart=${intervalInDaysStart}&intervalInDaysEnd=${intervalInDaysEnd}`))
   );
 }
 }
