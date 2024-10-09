@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable,Subject } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
+import { notificationsEndpoint } from "../../app-settings/config";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class NotificationService {
   private messagesSubject$ = new Subject<any>();
   public messages$ = this.messagesSubject$.asObservable();
 
-  private baseUrl = 'http://52.66.217.227:8001/Notifications';
+  private baseUrl = notificationsEndpoint;
   // private baseUrl = 'http://127.0.0.1:8001/Notifications';
 
   constructor(private http: HttpClient) {

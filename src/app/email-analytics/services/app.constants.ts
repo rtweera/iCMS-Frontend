@@ -6,6 +6,7 @@ export const URLS = {
     // baseUrl: 'http://44.234.117.141:8080/email',
     // baseUrlv2: 'http://44.234.117.141:8080/email/v2',
     baseUrl: emailEndpoint,
+    baseUrlv2: emailEndpoint,
     // baseUrlv2: 'http://ec2-13-201-92-74.ap-south-1.compute.amazonaws.com/email/v2',
 }
 
