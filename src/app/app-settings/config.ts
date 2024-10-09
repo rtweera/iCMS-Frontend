@@ -1,6 +1,8 @@
 //create string variable for apiEndpoint and export it
 
 export const apiEndpoint = 'http://localhost:8000';
+export const emailEndpoint = 'http://localhost:8010/email/v2';
+
 
 // export const apiEndpoint = 'http://3.110.89.72:8000';
 
