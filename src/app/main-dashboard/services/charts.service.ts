@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable,Subject } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import { GridComponent } from '../components/grid/grid.component';
+import { chartsEndpoint } from '../../app-settings/config';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ChartsService {
   private messagesSubject$ = new Subject<any>();
   public messages$ = this.messagesSubject$.asObservable();
 
-  private baseUrl = 'http://127.0.0.1:8015/charts';
+  private baseUrl = chartsEndpoint;
 
   username:any;
 
