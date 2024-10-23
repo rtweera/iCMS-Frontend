@@ -332,7 +332,7 @@ grid(draggablebool:boolean){
     maxItemRows: 3,
 
     minItemCols: 3,
-    minItemRows: 3,
+    minItemRows: 2,
 
     defaultItemCols: 1,
     defaultItemRows: 1,

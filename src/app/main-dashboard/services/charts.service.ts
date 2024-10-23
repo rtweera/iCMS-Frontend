@@ -16,8 +16,7 @@ export class ChartsService {
   private messagesSubject$ = new Subject<any>();
   public messages$ = this.messagesSubject$.asObservable();
 
-  private baseUrl = 'http://3.110.177.156:8002/charts';
-  // private baseUrl = 'http://127.0.0.1:8002/charts';
+  private baseUrl = 'http://127.0.0.1:8015/charts';
 
   username:any;
 
