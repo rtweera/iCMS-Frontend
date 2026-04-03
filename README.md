@@ -21,7 +21,7 @@ Angular frontend for iCMS analytics, including call, email, social media, dashbo
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/rtweera/iCMS-Frontend.git
+   git clone https://github.com/<your-org-or-user>/iCMS-Frontend.git
    cd iCMS-Frontend
    ```
 2. Install dependencies:
@@ -106,7 +106,7 @@ Adjust image name, app labels, and deployment metadata before applying.
 
 ## Notes
 
-- `npm test` currently fails in this repository due to existing test/configuration issues unrelated to README changes.
+- `npm test` currently fails in this repository due to existing test/configuration issues (for example missing `gauge-chart-facebook.component` import target and test asset/polyfill path issues).
 - Production build may show budget/CommonJS warnings; review and tune if strict CI thresholds are required.
 
 ## Contributing
